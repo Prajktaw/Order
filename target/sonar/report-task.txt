@@ -1,0 +1,7 @@
+organization=prajkta
+projectKey=Prajktaw_Order
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.24584
+dashboardUrl=https://sonarcloud.io/dashboard?id=Prajktaw_Order
+ceTaskId=AX0DDe1HPE0Go_WoRUtI
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AX0DDe1HPE0Go_WoRUtI
