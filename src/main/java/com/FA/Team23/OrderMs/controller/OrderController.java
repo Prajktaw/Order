@@ -31,9 +31,6 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
-//	@Autowired
-//	DiscoveryClient client;
-	
 	@Value("${user.uri}")
 	String userUri;
 	
@@ -44,38 +41,31 @@ public class OrderController {
 	public ResponseEntity<String> placeOrder(@PathVariable String buyerId, @RequestBody OrderDTO order){
 		
 		try {
-//			
+			
 			ObjectMapper mapper = new ObjectMapper();  
-			//Object obj = new Object();
-			//obj.
 			List<ProductDTO> productList = new ArrayList<>();
 			List<CartDTO> cartList = mapper.convertValue(
 					new RestTemplate().getForObject(userUri+"/userMS/buyer/cart/get/" + buyerId, List.class), 
 				    new TypeReference<List<CartDTO>>(){}
 				);
 			
-//			
+			
 			cartList.forEach(item ->{
 				ProductDTO prod = new RestTemplate().getForObject(productUri+"/prodMS/getById/" +item.getProdId(),ProductDTO.class) ; //getByProdId/{productId}
-				//System.out.println(prod);
+				
 				productList.add(prod);
 			});
-			//System.out.println(productList);
-			//System.out.println(cartList);
-			//System.out.println(order);
 			OrderPlacedDTO orderPlaced = orderService.placeOrder(productList,cartList,order);
-			//System.out.println("after");
 			cartList.forEach(item->{
-				//System.out.println("after111");
 				
 				new RestTemplate().put(productUri+"/prodMS/updateStock/" +item.getProdId()+"/"+item.getQuantity(),null) ;
-				//System.out.println("after1112222");
+				
 				new RestTemplate().delete(userUri+"/userMS/buyer/cart/remove/"+buyerId+"/"+item.getProdId());
-				//new RestTemplate().postForObject(userUri+"/userMS/buyer/cart/remove/"+buyerId+"/"+item.getProdId(),null, String.class);
+				
 			});			
-			//System.out.println("before111");
+			
 			new RestTemplate().postForObject(userUri+"/userMS/updateRewardPoints/"+buyerId+"/"+orderPlaced.getRewardPoints() ,null, String.class);
-			//System.out.println("before");
+			
 			return new ResponseEntity<>(orderPlaced.getOrderId(),HttpStatus.ACCEPTED);
 		}
 		catch(Exception e)

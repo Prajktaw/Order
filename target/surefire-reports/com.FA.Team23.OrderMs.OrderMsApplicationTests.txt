@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.FA.Team23.OrderMs.OrderMsApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.155 s - in com.FA.Team23.OrderMs.OrderMsApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.265 s - in com.FA.Team23.OrderMs.OrderMsApplicationTests
