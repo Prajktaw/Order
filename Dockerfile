@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-alpine
+FROM openjdk:11
 VOLUME /tmp
 COPY /target/orderMS-0.0.1-SNAPSHOT.jar /usr/app/
 WORKDIR /usr/app
