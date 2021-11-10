@@ -45,6 +45,6 @@ phases:
             - printf '[{"name":"userContainer","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
-     - '*/'  
+     - '**/*'  
      - imagedefinitions.json
     
